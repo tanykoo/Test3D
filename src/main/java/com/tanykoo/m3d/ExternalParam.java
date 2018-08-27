@@ -1,5 +1,7 @@
 package com.tanykoo.m3d;
 
+import com.tanykoo.m3d.math.M3dMath;
+
 /**
  * @Author ThinkPad
  * Created : 2018-08-22 10:07
@@ -7,19 +9,18 @@ package com.tanykoo.m3d;
  */
 public class ExternalParam {
     //物体原点在世界坐标系中的坐标
-    private WorldCoordinate oCoorDinate;
+    private Matrix translateMatrix;
     //旋转矩阵
     private Matrix rolateMatrix;
-
     //缩放矩阵
     private Matrix zoomMatrix;
 
-    public WorldCoordinate getoCoorDinate() {
-        return oCoorDinate;
+    public Matrix getTranslateMatrix() {
+        return translateMatrix;
     }
 
-    public void setoCoorDinate(WorldCoordinate oCoorDinate) {
-        this.oCoorDinate = oCoorDinate;
+    public void setTranslateMatrix(Matrix translateMatrix) {
+        this.translateMatrix = translateMatrix;
     }
 
     public Matrix getRolateMatrix() {
@@ -36,5 +37,9 @@ public class ExternalParam {
 
     public void setZoomMatrix(Matrix zoomMatrix) {
         this.zoomMatrix = zoomMatrix;
+    }
+
+    public Matrix getTransformMatrix(){
+        return M3dMath.mutl(M3dMath.mutl(zoomMatrix,translateMatrix),rolateMatrix);
     }
 }

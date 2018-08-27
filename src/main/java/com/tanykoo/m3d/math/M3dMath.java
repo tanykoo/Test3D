@@ -1,6 +1,8 @@
 package com.tanykoo.m3d.math;
 
+import com.tanykoo.m3d.Coordinate3D;
 import com.tanykoo.m3d.Matrix;
+import com.tanykoo.m3d.RolateParam;
 
 /**
  * @Author ThinkPad
@@ -55,16 +57,114 @@ public class M3dMath {
         return matrix3;
     }
 
+
+
+    public static Matrix getReverseMartrix(Matrix data) {
+        double[][] newdata = new double[data.getRow()][data.getColumn()];
+        double A = getMartrixResult(data.getMatrix());
+
+        for(int i=0; i<data.getRow(); i++) {
+            for(int j=0; j<data.getColumn(); j++) {
+                if((i+j)%2 == 0) {
+                    newdata[i][j] = getMartrixResult(getConfactor(data.getMatrix(), i+1, j+1)) / A;
+                }else {
+                    newdata[i][j] = -getMartrixResult(getConfactor(data.getMatrix(), i+1, j+1)) / A;
+                }
+
+            }
+        }
+        newdata = trans(newdata);
+
+        return new Matrix(newdata);
+    }
+
+    /*
+     * 计算行列式的值
+     */
+    private static double getMartrixResult(double[][] data) {
+        /*
+         * 二维矩阵计算
+         */
+        if(data.length == 2) {
+            return data[0][0]*data[1][1] - data[0][1]*data[1][0];
+        }
+        /*
+         * 二维以上的矩阵计算
+         */
+        float result = 0;
+        int num = data.length;
+        double[] nums = new double[num];
+        for(int i=0; i<data.length; i++) {
+            if(i%2 == 0) {
+                nums[i] = data[0][i] * getMartrixResult(getConfactor(data, 1, i+1));
+            }else {
+                nums[i] = -data[0][i] * getMartrixResult(getConfactor(data, 1, i+1));
+            }
+        }
+        for(int i=0; i<data.length; i++) {
+            result += nums[i];
+        }
+
+//      System.out.println(result);
+        return result;
+    }
+
+    /*
+     * 求(h,v)坐标的位置的余子式
+     */
+    private static double[][] getConfactor(double[][] data, int h, int v) {
+        int H = data.length;
+        int V = data[0].length;
+        double[][] newdata = new double[H-1][V-1];
+        for(int i=0; i<newdata.length; i++) {
+            if(i < h-1) {
+                for(int j=0; j<newdata[i].length; j++) {
+                    if(j < v-1) {
+                        newdata[i][j] = data[i][j];
+                    }else {
+                        newdata[i][j] = data[i][j+1];
+                    }
+                }
+            }else {
+                for(int j=0; j<newdata[i].length; j++) {
+                    if(j < v-1) {
+                        newdata[i][j] = data[i+1][j];
+                    }else {
+                        newdata[i][j] = data[i+1][j+1];
+                    }
+                }
+            }
+        }
+
+//      for(int i=0; i<newdata.length; i ++)
+//          for(int j=0; j<newdata[i].length; j++) {
+//              System.out.println(newdata[i][j]);
+//          }
+        return newdata;
+    }
+
+    private static double[][] trans(double[][] newdata) {
+        // TODO Auto-generated method stub
+        double[][] newdata2 = new double[newdata[0].length][newdata.length];
+        for(int i=0; i<newdata.length; i++)
+            for(int j=0; j<newdata[0].length; j++) {
+                newdata2[j][i] = newdata[i][j];
+            }
+        return newdata2;
+    }
+
+
     public static void main(String[] args) {
-        double[][] d1 = new double[][]{{1,2,1},{0,1,0},{3,3,3}};
-        double[][] d2 = new double[][]{{3,2,1},{0,1,0},{3,4,3}};
-        Matrix matrix1 = new Matrix(d1);
-        Matrix matrix2 = new Matrix(d2);
+        Coordinate3D vector = new Coordinate3D(Math.sqrt(1.0/3),Math.sqrt(1.0/3),Math.sqrt(1.0/3));
 
-        Matrix matrix3 = M3dMath.mutl(matrix1,matrix2);
+        try {
+            RolateParam rolateParam = new RolateParam(Math.PI *2/3 ,vector);
+            Matrix rolateM = rolateParam.getMatrix();
+            double[][] doubles = new double[][]{{3,-3,3,1}};
+            System.out.println(M3dMath.mutl(new Matrix(doubles),rolateM));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        Matrix matrix4 = M3dMath.sub(matrix1,matrix2);
-
-        System.out.println(matrix4);
     }
 }

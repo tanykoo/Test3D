@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Date;
 
 /**
  * @Author ThinkPad
@@ -19,12 +20,16 @@ public class Test extends JFrame{
         System.out.println(180/(Math.PI/Math.acos(1/-Math.sqrt(2))));
 
         JFrame frame = new JFrame();
-        frame.add(new MyPanel());
+        MyPanel myPanel = new MyPanel();
+        frame.add(myPanel);
         frame.setLocation(300,300);
         frame.setSize(300,300);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         frame.setVisible(true);
+
+
 
     }
 
@@ -34,7 +39,6 @@ class MyPanel extends JPanel{
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
 
         g.setColor(new Color(0,0,0,150));
         g.fillPolygon(new int[]{20,30,30},new int[]{10,10,40},3);
@@ -51,5 +55,6 @@ class MyPanel extends JPanel{
         g.setColor(new Color(255,255,255,100));
         g.drawPolygon(new int[]{10,20,30},new int[]{10,10,40},3);
         g.drawPolygon(new int[]{20,30,50},new int[]{10,40,30},3);
+
     }
 }

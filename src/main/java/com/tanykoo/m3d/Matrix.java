@@ -4,12 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 矩阵
  * @Author ThinkPad
  * Created : 2018-08-24 17:39
  * @Since
  */
 public class Matrix {
-    //矩阵
+
     private double[][] matrix;
 
     public Matrix(int row,int column){
@@ -44,7 +45,7 @@ public class Matrix {
         for(int i = 0; i < matrix.length;i++){
             str+= "[";
             for(int j = 0 ; j< matrix[i].length;j++){
-                str += matrix[i][j];
+                str += String.format("%2f",matrix[i][j]);
                 if(j < matrix[i].length-1){
                     str += ", ";
                 }

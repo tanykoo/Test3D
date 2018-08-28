@@ -8,7 +8,7 @@ import com.tanykoo.m3d.math.M3dMath;
  * @Since
  */
 public class ExternalParam {
-    //物体原点在世界坐标系中的坐标
+    //平移矩阵
     private Matrix translateMatrix;
     //旋转矩阵
     private Matrix rolateMatrix;
@@ -40,6 +40,6 @@ public class ExternalParam {
     }
 
     public Matrix getTransformMatrix(){
-        return M3dMath.mutl(M3dMath.mutl(zoomMatrix,translateMatrix),rolateMatrix);
+        return M3dMath.mutl(M3dMath.mutl(zoomMatrix,rolateMatrix),translateMatrix);
     }
 }

@@ -2,7 +2,7 @@ package com.tanykoo.m3d.math;
 
 import com.tanykoo.m3d.Coordinate3D;
 import com.tanykoo.m3d.Matrix;
-import com.tanykoo.m3d.RolateParam;
+import com.tanykoo.m3d.ZoomParam;
 
 /**
  * @Author ThinkPad
@@ -22,6 +22,20 @@ public class M3dMath {
                 for(int k = 0; k< matrix1.getColumn() ; k++){
                     matrix[i][j] += matrix1.getMatrix()[i][k] * matrix2.getMatrix()[k][j];
                 }
+            }
+        }
+        Matrix matrix3 = new Matrix(matrix);
+
+        return matrix3;
+    }
+
+    public static Matrix mutl(double x , Matrix matrix1) throws IndexOutOfBoundsException{
+
+        double[][] matrix = new double[matrix1.getRow()][matrix1.getColumn()];
+
+        for(int i = 0 ; i < matrix1.getRow(); i++){
+            for(int j = 0 ; j < matrix1.getColumn() ; j++){
+                matrix[i][j] = x * matrix1.getMatrix()[i][j];
             }
         }
         Matrix matrix3 = new Matrix(matrix);
@@ -136,15 +150,10 @@ public class M3dMath {
             }
         }
 
-//      for(int i=0; i<newdata.length; i ++)
-//          for(int j=0; j<newdata[i].length; j++) {
-//              System.out.println(newdata[i][j]);
-//          }
         return newdata;
     }
 
     private static double[][] trans(double[][] newdata) {
-        // TODO Auto-generated method stub
         double[][] newdata2 = new double[newdata[0].length][newdata.length];
         for(int i=0; i<newdata.length; i++)
             for(int j=0; j<newdata[0].length; j++) {
@@ -155,13 +164,12 @@ public class M3dMath {
 
 
     public static void main(String[] args) {
-        Coordinate3D vector = new Coordinate3D(Math.sqrt(1.0/3),Math.sqrt(1.0/3),Math.sqrt(1.0/3));
+        Coordinate3D point = new Coordinate3D(0.5,0.5,0.5);
+
+        Coordinate3D point1 = new Coordinate3D(50,50,0);
 
         try {
-            RolateParam rolateParam = new RolateParam(Math.PI *2/3 ,vector);
-            Matrix rolateM = rolateParam.getMatrix();
-            double[][] doubles = new double[][]{{3,-3,3,1}};
-            System.out.println(M3dMath.mutl(new Matrix(doubles),rolateM));
+            System.out.println(M3dMath.mutl(point.getMatrix(),new ZoomParam(50,50,0).getMatrix()));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -40,4 +40,13 @@ public class Coordinate3D {
     public void setZ(double z) {
         this.z = z;
     }
+
+    public Matrix getMatrix(){
+        double [][] d = new double[1][4];
+        d[0][0] = x;
+        d[0][1] = y;
+        d[0][2] = z;
+        d[0][3] = 1;
+        return new Matrix(d);
+    }
 }

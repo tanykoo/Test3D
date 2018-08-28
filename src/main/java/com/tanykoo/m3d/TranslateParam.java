@@ -11,7 +11,23 @@ import org.slf4j.LoggerFactory;
  */
 public class TranslateParam {
     //平移向量
-    public Coordinate3D vector;
+    private Coordinate3D vector;
+
+
+    public TranslateParam(){
+        this(new Coordinate3D(0,0,0));
+    }
+    public TranslateParam(Coordinate3D vector){
+        this.vector = vector;
+    }
+
+    public Coordinate3D getVector() {
+        return vector;
+    }
+
+    public void setVector(Coordinate3D vector) {
+        this.vector = vector;
+    }
 
     //平移矩阵
     public Matrix getMatrix(){
@@ -21,9 +37,9 @@ public class TranslateParam {
         d[2][2] = 1;
         d[3][3] = 1;
 
-        d[0][3] = vector.getX();
-        d[1][3] = vector.getY();
-        d[2][3] = vector.getZ();
+        d[3][0] = vector.getX();
+        d[3][1] = vector.getY();
+        d[3][2] = vector.getZ();
 
         return new Matrix(d);
     }

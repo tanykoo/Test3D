@@ -19,6 +19,12 @@ public class ZoomParam {
     public ZoomParam(){
     }
 
+    public ZoomParam(double x, double y,double z){
+        this.zoomZ = z;
+        this.zoomX = x;
+        this.zoomY = y;
+    }
+
 
     public double getZoomX() {
         return zoomX;

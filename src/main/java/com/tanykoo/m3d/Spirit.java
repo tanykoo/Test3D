@@ -3,6 +3,8 @@ package com.tanykoo.m3d;
 import com.tanykoo.m3d.math.M3dMath;
 
 import java.awt.*;
+import java.awt.event.MouseListener;
+import java.awt.peer.LightweightPeer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,8 @@ public class Spirit{
     Point[] screenPoints;
 
     ExternalParam externalParam;
+    transient MouseListener mouseListener;
+    boolean newEventsOnly = false;
 
     M3DPanel parent;
 
@@ -119,6 +123,18 @@ public class Spirit{
                 g.fillPolygon(xPoint,yPoint,xPoint.length);
             }
         }
+    }
+
+    public synchronized void addMouseListener(MouseListener l) {
+        if (l == null) {
+            return;
+        }
+        mouseListener = AWTEventMulticaster.add(mouseListener,l);
+        newEventsOnly = true;
+
+        // if this is a lightweight component, enable mouse events
+        // in the native container.
+
     }
 
 }

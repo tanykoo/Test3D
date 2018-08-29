@@ -1,7 +1,8 @@
 package com.tanykoo.m3d;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.List;
 
 import static java.lang.Thread.sleep;
 
-public class M3DPanel extends JPanel {
+public class M3DPanel extends Canvas {
     List<Spirit> spiritList = new ArrayList<>();
     float fps = 0;
     int times = 0;
@@ -24,6 +25,7 @@ public class M3DPanel extends JPanel {
 
     public M3DPanel(){
         super();
+        this.setBackground(Color.BLACK);
 
         new Thread(()->{
             while (true){
@@ -35,16 +37,46 @@ public class M3DPanel extends JPanel {
                 this.repaint();
             }
         }).start();
-        this.setFocusable(true);
+
+        addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
     }
 
     @Override
     public void paint(Graphics g) {
-        long time1 = new Date().getTime();
-        g.clearRect(0,0,getWidth(),getHeight());
-        currentImage = createImage();
         g.drawImage(currentImage,0,0,null);
+    }
+
+    @Override
+    public void update(Graphics g) {
+        long time1 = new Date().getTime();
+        currentImage = createImage();
+        paint(g);
         long time2 = new Date().getTime();
         if(times++ % 20 == 0) {
             fps = 1000f / (time2 - time1 + 5);
@@ -76,4 +108,6 @@ public class M3DPanel extends JPanel {
         paintFps(graphics);
         return image;
     }
+
+
 }

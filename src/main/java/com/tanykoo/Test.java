@@ -7,10 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,53 +26,7 @@ public class Test extends JFrame{
 
         JFrame frame = new JFrame();
         M3DPanel myPanel = new M3DPanel();
-        myPanel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Image image = myPanel.getCurrentImage();
-                try {
-                    ImageIO.write((BufferedImage)image,"png",new File("e:/aaa.png"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-                System.out.println(e.getX());
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                System.out.println(e.getX());
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                System.out.println(e.getX());
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                System.out.println(e.getX());
-            }
-        });
-        myPanel.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                System.out.println(e.getKeyCode());
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
 
         Spirit spirit = new Spirit();
 
@@ -93,6 +44,7 @@ public class Test extends JFrame{
         frame.setSize(300,300);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         frame.setVisible(true);
         myPanel.requestFocus();

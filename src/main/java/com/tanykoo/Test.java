@@ -45,6 +45,33 @@ public class Test extends JFrame{
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        myPanel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
 
         frame.setVisible(true);
         myPanel.requestFocus();

@@ -1,8 +1,10 @@
 package com.tanykoo.m3d;
 
 import com.tanykoo.m3d.math.M3dMath;
+import com.tanykoo.m3d.math.Matrix;
 
 /**
+ * 外部参数
  * @Author ThinkPad
  * Created : 2018-08-22 10:07
  * @Since

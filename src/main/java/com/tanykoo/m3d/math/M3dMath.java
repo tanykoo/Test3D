@@ -1,7 +1,6 @@
 package com.tanykoo.m3d.math;
 
 import com.tanykoo.m3d.Coordinate3D;
-import com.tanykoo.m3d.Matrix;
 import com.tanykoo.m3d.ZoomParam;
 
 /**

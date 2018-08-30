@@ -1,11 +1,8 @@
 package com.tanykoo.m3d.math;
 
 import com.tanykoo.m3d.*;
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Date;
 
 /**
  * @Author ThinkPad

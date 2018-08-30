@@ -1,4 +1,4 @@
-package com.tanykoo.m3d;
+package com.tanykoo.m3d.math;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

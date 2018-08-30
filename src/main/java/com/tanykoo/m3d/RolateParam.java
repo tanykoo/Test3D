@@ -1,6 +1,7 @@
 package com.tanykoo.m3d;
 
 import com.tanykoo.m3d.math.M3dMath;
+import com.tanykoo.m3d.math.Matrix;
 
 /**
  * 旋转参数

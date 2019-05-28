@@ -1,9 +1,7 @@
 package com.tanykoo.m3d;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
+ * 物理坐标
  * @Author ThinkPad
  * Created : 2018-08-24 10:20
  * @Since

@@ -4,13 +4,9 @@ import com.tanykoo.m3d.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @Author ThinkPad
@@ -28,14 +24,16 @@ public class Test extends JFrame{
         M3DPanel myPanel = new M3DPanel();
 
 
-        Spirit spirit = new Spirit();
+        final Spirit spirit = new Spirit();
 
-        Spirit spirit1 = new Spirit();
+        final Spirit spirit1 = new Spirit();
         ExternalParam externalParam = new ExternalParam();
         externalParam.setZoomMatrix(new ZoomParam().getMatrix());
         externalParam.setTranslateMatrix(new TranslateParam(new Coordinate3D(70,0,0)).getMatrix());
         externalParam.setRolateMatrix(new RolateParam(Math.PI).getMatrix());
         spirit1.addExternalParam(externalParam);
+
+
 
         myPanel.addSprint(spirit);
         myPanel.addSprint(spirit1);
@@ -93,7 +91,7 @@ public class Test extends JFrame{
                         ExternalParam externalParam2 = new ExternalParam();
                         externalParam2.setZoomMatrix(new ZoomParam().getMatrix());
                         externalParam2.setTranslateMatrix(new TranslateParam(new Coordinate3D((times > 300 ? -0.2 : 0.2), 0, 0)).getMatrix());
-                        times = (++times) % 599;
+                        times = (++times) % 600;
                         externalParam2.setRolateMatrix(new RolateParam(0.02).getMatrix());
                         spirit1.addExternalParam(externalParam2);
                     } catch (InterruptedException e) {

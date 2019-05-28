@@ -1,8 +1,5 @@
 package net.miqiang.gui;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -29,11 +26,11 @@ public class TestGraphics {
 class MyCanvas extends Canvas{
     @Override
     public void paint(Graphics g) {
-        int width = getParent().getWidth();
-        int height = getParent().getHeight();
+        final int width = getParent().getWidth();
+        final int height = getParent().getHeight();
         BufferedImage image = new BufferedImage(getWidth(), getHeight(),
                 BufferedImage.TYPE_INT_RGB);
-        Graphics graphics = image.getGraphics();
+        final Graphics graphics = image.getGraphics();
         new Thread(new Runnable() {
             @Override
             public void run() {

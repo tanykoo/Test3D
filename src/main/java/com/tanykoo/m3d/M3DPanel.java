@@ -1,8 +1,6 @@
 package com.tanykoo.m3d;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,43 +25,19 @@ public class M3DPanel extends Canvas {
         super();
         this.setBackground(Color.BLACK);
 
-        new Thread(()->{
-            while (true){
-                try {
-                    sleep(5);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        sleep(2);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    repaint();
                 }
-                this.repaint();
             }
         }).start();
-
-        addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
 
     }
 
@@ -79,7 +53,7 @@ public class M3DPanel extends Canvas {
         paint(g);
         long time2 = new Date().getTime();
         if(times++ % 20 == 0) {
-            fps = 1000f / (time2 - time1 + 5);
+            fps = 1000f / (time2 - time1 + 2);
             times = times%20;
         }
     }

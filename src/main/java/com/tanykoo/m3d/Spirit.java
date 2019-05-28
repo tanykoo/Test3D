@@ -120,7 +120,12 @@ public class Spirit{
                     xPoint[j] = (int)screenPoints[index.get(i)[j]].getX();
                     yPoint[j] = (int)screenPoints[index.get(i)[j]].getY();
                 }
+                g.drawPolygon(xPoint,yPoint,xPoint.length);
                 g.fillPolygon(xPoint,yPoint,xPoint.length);
+
+
+
+                g.fillPolygon(new int[]{200,200,200},new int[]{200,200,200},3);
             }
         }
     }
